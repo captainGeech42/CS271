@@ -1,7 +1,7 @@
 TITLE Program 01     (main.asm)
 
 ; Author: Alexander Nead-Work
-; Last Modified:
+; Last Modified: 10/7/2018 @ 13:30 PST
 ; OSU email address: neadwora@oregonstate.edu
 ; Course number/section: CS 271, section 400
 ; Project Number: 1                Due Date: Oct 7, 2018
