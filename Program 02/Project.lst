@@ -1,4 +1,4 @@
-Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
+Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/18/18 01:14:42
 Program Template     (main.asm				     Page 1 - 1
 
 
@@ -30,26 +30,37 @@ Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
 			      C .LIST
 			      C 
 
- 00000000			.data
 
- 00000000 46 69 62 6F 6E	sPreamble1		BYTE	"Fibonacci Numbers", 0										;program header 1/2
+ 00000000			.data
+ 00000000 0000002E		cUpperLimit		DWORD	46															;max size
+
+ 00000004 46 69 62 6F 6E	sPreamble1		BYTE	"Fibonacci Numbers", 0										;program header 1/2
 	   61 63 63 69 20
 	   4E 75 6D 62 65
 	   72 73 00
- 00000012 50 72 6F 67 72	sPreamble2		BYTE	"Programmed by Alexander Nead-Work", 0						;program header 2/2
+ 00000016 50 72 6F 67 72	sPreamble2		BYTE	"Programmed by Alexander Nead-Work", 0						;program header 2/2
 	   61 6D 6D 65 64
 	   20 62 79 20 41
 	   6C 65 78 61 6E
 	   64 65 72 20 4E
 	   65 61 64 2D 57
 	   6F 72 6B 00
- 00000034 57 68 61 74 27	sNamePrompt		BYTE	"What's your name? ", 0										;prompt for user's name
+ 00000038 2A 2A 45 43 3A	sEC1			BYTE	"**EC: Numbers displayed in aligned columns", 0				;EC #1
+	   20 4E 75 6D 62
+	   65 72 73 20 64
+	   69 73 70 6C 61
+	   79 65 64 20 69
+	   6E 20 61 6C 69
+	   67 6E 65 64 20
+	   63 6F 6C 75 6D
+	   6E 73 00
+ 00000063 57 68 61 74 27	sNamePrompt		BYTE	"What's your name? ", 0										;prompt for user's name
 	   73 20 79 6F 75
 	   72 20 6E 61 6D
 	   65 3F 20 00
- 00000047 48 65 6C 6C 6F	sGreeting		BYTE	"Hello, ", 0												;greet the user
+ 00000076 48 65 6C 6C 6F	sGreeting		BYTE	"Hello, ", 0												;greet the user
 	   2C 20 00
- 0000004F 45 6E 74 65 72	sPrePrompt1		BYTE	"Enter the number of Fibonacci terms to be displayed", 0	;preprompt 1/2
+ 0000007E 45 6E 74 65 72	sPrePrompt1		BYTE	"Enter the number of Fibonacci terms to be displayed", 0	;preprompt 1/2
 	   20 74 68 65 20
 	   6E 75 6D 62 65
 	   72 20 6F 66 20
@@ -60,7 +71,7 @@ Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
 	   65 20 64 69 73
 	   70 6C 61 79 65
 	   64 00
- 00000083 47 69 76 65 20	sPrePrompt2		BYTE	"Give the number as an integer in the range [1 .. 46].", 0	;preprompt 2/2
+ 000000B2 47 69 76 65 20	sPrePrompt2		BYTE	"Give the number as an integer in the range [1 .. 46].", 0	;preprompt 2/2
 	   74 68 65 20 6E
 	   75 6D 62 65 72
 	   20 61 73 20 61
@@ -71,7 +82,7 @@ Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
 	   67 65 20 5B 31
 	   20 2E 2E 20 34
 	   36 5D 2E 00
- 000000B9 48 6F 77 20 6D	sPrompt			BYTE	"How many Fibonacci terms do you want? ", 0					;prompt for num terms
+ 000000E8 48 6F 77 20 6D	sPrompt			BYTE	"How many Fibonacci terms do you want? ", 0					;prompt for num terms
 	   61 6E 79 20 46
 	   69 62 6F 6E 61
 	   63 63 69 20 74
@@ -79,7 +90,7 @@ Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
 	   64 6F 20 79 6F
 	   75 20 77 61 6E
 	   74 3F 20 00
- 000000E0 4F 75 74 20 6F	sInputError		BYTE	"Out of range. Enter a number in [1 .. 46]", 0				;input out of range
+ 0000010F 4F 75 74 20 6F	sInputError		BYTE	"Out of range. Enter a number in [1 .. 46]", 0				;input out of range
 	   66 20 72 61 6E
 	   67 65 2E 20 45
 	   6E 74 65 72 20
@@ -88,7 +99,7 @@ Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
 	   6E 20 5B 31 20
 	   2E 2E 20 34 36
 	   5D 00
- 0000010A 52 65 73 75 6C	sExit1			BYTE	"Results certified by Alexander Nead-Work.", 0				;exit 1/2
+ 00000139 52 65 73 75 6C	sExit1			BYTE	"Results certified by Alexander Nead-Work.", 0				;exit 1/2
 	   74 73 20 63 65
 	   72 74 69 66 69
 	   65 64 20 62 79
@@ -97,74 +108,131 @@ Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
 	   20 4E 65 61 64
 	   2D 57 6F 72 6B
 	   2E 00
- 00000134 47 6F 6F 64 62	sExit2			BYTE	"Goodbye, ", 0												;exit 2/2
+ 00000163 47 6F 6F 64 62	sExit2			BYTE	"Goodbye, ", 0												;exit 2/2
 	   79 65 2C 20 00
 
- 0000013E  00000032 [		vUserName		BYTE	50 DUP(0)													;allocate 50 bytes for user name
+ 0000016D  00000032 [		vUserName		BYTE	50 DUP(0)													;allocate 50 bytes for user name
 	    00
 	   ]
- 00000170 00			vNumTerms		BYTE	?															;num fibonacci terms to calculate
+ 0000019F 00000000		vNumTerms		DWORD	?															;num fibonacci terms to calculate
+ 000001A3 00000001		vFib1			DWORD	1															;temp var 1 for sequence
+ 000001A7 00000000		vFib2			DWORD	0															;temp var 2 for sequence
 
  00000000			.code
  00000000			main PROC
 
  00000000			introduction:
- 00000000  BA 00000000 R		mov		edx, OFFSET sPreamble1
+ 00000000  BA 00000004 R		mov		edx, OFFSET sPreamble1
  00000005  E8 00000000 E		call	WriteString
  0000000A  E8 00000000 E		call	CrLf
- 0000000F  BA 00000012 R		mov		edx, OFFSET sPreamble2
+ 0000000F  BA 00000016 R		mov		edx, OFFSET sPreamble2
  00000014  E8 00000000 E		call	WriteString
  00000019  E8 00000000 E		call	CrLf
- 0000001E  E8 00000000 E		call	CrLf
+ 0000001E  BA 00000038 R		mov		edx, OFFSET sEC1
+ 00000023  E8 00000000 E		call	WriteString
+ 00000028  E8 00000000 E		call	CrLf
+ 0000002D  E8 00000000 E		call	CrLf
 
 				;get/greet the user
- 00000023  BA 00000034 R		mov		edx, OFFSET sNamePrompt
- 00000028  E8 00000000 E		call	WriteString
-					; get user name (ReadString something something?)
- 0000002D  E8 00000000 E		call	CrLf
- 00000032  BA 00000047 R		mov		edx, OFFSET sGreeting
+ 00000032  BA 00000063 R		mov		edx, OFFSET sNamePrompt
  00000037  E8 00000000 E		call	WriteString
- 0000003C  BA 0000013E R		mov		edx, OFFSET vuserName
- 00000041  E8 00000000 E		call	WriteString
- 00000046  E8 00000000 E		call	CrLf
-
- 0000004B			userInstructions:
- 0000004B  BA 0000004F R		mov		edx, OFFSET sPrePrompt1
+ 0000003C  BA 0000016D R		mov		edx, OFFSET vUserName
+ 00000041  B9 00000031			mov		ecx, 49
+ 00000046  E8 00000000 E		call	ReadString
+ 0000004B  BA 00000076 R		mov		edx, OFFSET sGreeting
  00000050  E8 00000000 E		call	WriteString
- 00000055  E8 00000000 E		call	CrLf
- 0000005A  BA 00000083 R		mov		edx, OFFSET sPrePrompt2
- 0000005F  E8 00000000 E		call	WriteString
- 00000064  E8 00000000 E		call	CrLf
- 00000069  E8 00000000 E		call	CrLf
+ 00000055  BA 0000016D R		mov		edx, OFFSET vUserName
+ 0000005A  E8 00000000 E		call	WriteString
+ 0000005F  E8 00000000 E		call	CrLf
 
- 0000006E			getUserData:
- 0000006E  BA 000000B9 R		mov		edx, OFFSET sPrompt
- 00000073  E8 00000000 E		call	WriteString
- 00000078  E8 00000000 E		call	ReadInt
- 0000007D  A2 00000170 R		mov		vNumTerms, al
- 00000082  83 F8 01			cmp		eax, 1
- 00000085  7C 07			jl		InputError
- 00000087  83 F8 2E			cmp		eax, 46
- 0000008A  7F 02			jg		InputError
- 0000008C  EB 11			jmp		displayFibs
+ 00000064			userInstructions:
+ 00000064  BA 0000007E R		mov		edx, OFFSET sPrePrompt1
+ 00000069  E8 00000000 E		call	WriteString
+ 0000006E  E8 00000000 E		call	CrLf
+ 00000073  BA 000000B2 R		mov		edx, OFFSET sPrePrompt2
+ 00000078  E8 00000000 E		call	WriteString
+ 0000007D  E8 00000000 E		call	CrLf
+ 00000082  E8 00000000 E		call	CrLf
 
- 0000008E			inputError:
- 0000008E  BA 000000E0 R		mov		edx, OFFSET sInputError
- 00000093  E8 00000000 E		call	WriteString
- 00000098  E8 00000000 E		call	CrLf
- 0000009D  EB CF			jmp		GetUserData
+ 00000087			getUserData:
+ 00000087  BA 000000E8 R		mov		edx, OFFSET sPrompt
+ 0000008C  E8 00000000 E		call	WriteString
+ 00000091  E8 00000000 E		call	ReadInt
+ 00000096  A3 0000019F R		mov		vNumTerms, eax
+ 0000009B  83 F8 01			cmp		eax, 1
+ 0000009E  7C 11			jl		InputError
+ 000000A0  8B 1D 00000000 R		mov		ebx, cUpperLimit
+ 000000A6  3B C3			cmp		eax, ebx
+ 000000A8  7F 07			jg		InputError
+ 000000AA  E8 00000000 E		call	CrLf
+ 000000AF  EB 11			jmp		displayFibs
 
- 0000009F			displayFibs:
+ 000000B1			inputError:
+ 000000B1  BA 0000010F R		mov		edx, OFFSET sInputError
+ 000000B6  E8 00000000 E		call	WriteString
+ 000000BB  E8 00000000 E		call	CrLf
+ 000000C0  EB C5			jmp		GetUserData
 
- 0000009F			farewell:
+ 000000C2			displayFibs:
+					;edi will be used as a counter for printing the newlines
+ 000000C2  8B 0D 0000019F R		mov		ecx, vNumTerms
+ 000000C8  49				dec		ecx
+ 000000C9  BF 00000001			mov		edi, 1
+ 000000CE  B8 00000001			mov		eax, 1
+ 000000D3  E8 00000000 E		call	WriteDec
+ 000000D8  B8 00000009			mov		eax, 9
+ 000000DD  E8 00000000 E		call	WriteChar
+ 000000E2  E8 00000000 E		call	WriteChar
+					;weird edge case occurs when n=1 (infinite loop/overflow), so manually handle this case b/f loop
+					;probably due to `dec ecx` above
+ 000000E7  83 3D 0000019F R		cmp		vNumTerms, 1
+	   01
+ 000000EE  74 47			je		loopEnd
+ 000000F0			fibLoop:
+ 000000F0  A1 000001A3 R		mov		eax, vFib1
+ 000000F5  03 05 000001A7 R		add		eax, vFib2
+					;fib[n]=eax, fib[n-1]=vfib1, fib[n-2]=vfib2
+ 000000FB  8B 1D 000001A3 R		mov		ebx, vFib1
+ 00000101  89 1D 000001A7 R		mov		vFib2, ebx
+ 00000107  A3 000001A3 R		mov		vFib1, eax
+ 0000010C  E8 00000000 E		call	WriteDec
+ 00000111  B8 00000009			mov		eax, 9
+ 00000116  E8 00000000 E		call	WriteChar
+					;at fib[35], we only need one tab
+ 0000011B  83 F9 0B			cmp		ecx, 11
+ 0000011E  7E 05			jle		no2Tab
+ 00000120  E8 00000000 E		call	WriteChar
+ 00000125			no2Tab:
+ 00000125  47				inc		edi
+ 00000126  83 FF 05			cmp		edi, 5
+ 00000129  75 0A			jne		afterNewLine
+ 0000012B  BF 00000000			mov		edi, 0
+ 00000130  E8 00000000 E		call	CrLf
+ 00000135			afterNewLine:
+ 00000135  E2 B9			loop	fibLoop
+ 00000137			loopEnd:
+ 00000137  E8 00000000 E		call	CrLf
+ 0000013C  E8 00000000 E		call	CrLf
+
+ 00000141			farewell:
+ 00000141  BA 00000139 R		mov		edx, OFFSET sExit1
+ 00000146  E8 00000000 E		call	WriteString
+ 0000014B  E8 00000000 E		call	CrLf
+ 00000150  BA 00000163 R		mov		edx, OFFSET sExit2
+ 00000155  E8 00000000 E		call	WriteString
+ 0000015A  BA 0000016D R		mov		edx, OFFSET vUserName
+ 0000015F  E8 00000000 E		call	WriteString
+ 00000164  B8 0000002E			mov		eax, 46
+ 00000169  E8 00000000 E		call	WriteChar
+ 0000016E  E8 00000000 E		call	CrLf
 
 					exit
- 0000009F  6A 00	   *	    push   +000000000h
- 000000A1  E8 00000000 E   *	    call   ExitProcess
- 000000A6			main ENDP
+ 00000173  6A 00	   *	    push   +000000000h
+ 00000175  E8 00000000 E   *	    call   ExitProcess
+ 0000017A			main ENDP
 
 				END main
-Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/07/18 14:52:22
+Microsoft (R) Macro Assembler Version 14.15.26730.0	    10/18/18 01:14:42
 Program Template     (main.asm				     Symbols 2 - 1
 
 
@@ -258,8 +326,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 Para	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 00000171 Para	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 000000A6 Para	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 000001AB Para	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 0000017A Para	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -366,13 +434,17 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 000000A6 Public STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 0000017A Public STDCALL
   introduction . . . . . . . . .	L Near	 00000000 _TEXT	
-  userInstructions . . . . . . .	L Near	 0000004B _TEXT	
-  getUserData  . . . . . . . . .	L Near	 0000006E _TEXT	
-  inputError . . . . . . . . . .	L Near	 0000008E _TEXT	
-  displayFibs  . . . . . . . . .	L Near	 0000009F _TEXT	
-  farewell . . . . . . . . . . .	L Near	 0000009F _TEXT	
+  userInstructions . . . . . . .	L Near	 00000064 _TEXT	
+  getUserData  . . . . . . . . .	L Near	 00000087 _TEXT	
+  inputError . . . . . . . . . .	L Near	 000000B1 _TEXT	
+  displayFibs  . . . . . . . . .	L Near	 000000C2 _TEXT	
+  fibLoop  . . . . . . . . . . .	L Near	 000000F0 _TEXT	
+  no2Tab . . . . . . . . . . . .	L Near	 00000125 _TEXT	
+  afterNewLine . . . . . . . . .	L Near	 00000135 _TEXT	
+  loopEnd  . . . . . . . . . . .	L Near	 00000137 _TEXT	
+  farewell . . . . . . . . . . .	L Near	 00000141 _TEXT	
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
@@ -594,6 +666,7 @@ WriteConsole . . . . . . . . . .	Text   	 WriteConsoleA
 black  . . . . . . . . . . . . .	Number	 00000000h   
 blue . . . . . . . . . . . . . .	Number	 00000001h   
 brown  . . . . . . . . . . . . .	Number	 00000006h   
+cUpperLimit  . . . . . . . . . .	DWord	 00000000 _DATA	
 cyan . . . . . . . . . . . . . .	Number	 00000003h   
 exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
 gray . . . . . . . . . . . . . .	Number	 00000008h   
@@ -606,18 +679,21 @@ lightMagenta . . . . . . . . . .	Number	 0000000Dh
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
 red  . . . . . . . . . . . . . .	Number	 00000004h   
-sExit1 . . . . . . . . . . . . .	Byte	 0000010A _DATA	
-sExit2 . . . . . . . . . . . . .	Byte	 00000134 _DATA	
-sGreeting  . . . . . . . . . . .	Byte	 00000047 _DATA	
-sInputError  . . . . . . . . . .	Byte	 000000E0 _DATA	
-sNamePrompt  . . . . . . . . . .	Byte	 00000034 _DATA	
-sPrePrompt1  . . . . . . . . . .	Byte	 0000004F _DATA	
-sPrePrompt2  . . . . . . . . . .	Byte	 00000083 _DATA	
-sPreamble1 . . . . . . . . . . .	Byte	 00000000 _DATA	
-sPreamble2 . . . . . . . . . . .	Byte	 00000012 _DATA	
-sPrompt  . . . . . . . . . . . .	Byte	 000000B9 _DATA	
-vNumTerms  . . . . . . . . . . .	Byte	 00000170 _DATA	
-vUserName  . . . . . . . . . . .	Byte	 0000013E _DATA	
+sEC1 . . . . . . . . . . . . . .	Byte	 00000038 _DATA	
+sExit1 . . . . . . . . . . . . .	Byte	 00000139 _DATA	
+sExit2 . . . . . . . . . . . . .	Byte	 00000163 _DATA	
+sGreeting  . . . . . . . . . . .	Byte	 00000076 _DATA	
+sInputError  . . . . . . . . . .	Byte	 0000010F _DATA	
+sNamePrompt  . . . . . . . . . .	Byte	 00000063 _DATA	
+sPrePrompt1  . . . . . . . . . .	Byte	 0000007E _DATA	
+sPrePrompt2  . . . . . . . . . .	Byte	 000000B2 _DATA	
+sPreamble1 . . . . . . . . . . .	Byte	 00000004 _DATA	
+sPreamble2 . . . . . . . . . . .	Byte	 00000016 _DATA	
+sPrompt  . . . . . . . . . . . .	Byte	 000000E8 _DATA	
+vFib1  . . . . . . . . . . . . .	DWord	 000001A3 _DATA	
+vFib2  . . . . . . . . . . . . .	DWord	 000001A7 _DATA	
+vNumTerms  . . . . . . . . . . .	DWord	 0000019F _DATA	
+vUserName  . . . . . . . . . . .	Byte	 0000016D _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   
